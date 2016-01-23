@@ -8,9 +8,10 @@ baseurl: '/blog/'
 author:
   name: '管登荣'
   email: 15950570277@163.com
-  twitter_username: not yet
+  twitter_username: DengrongGuan
   github_username:  DengrongGuan12
-  linkedin_username:  not yet
+  linkedin_username:  DengrongGuan
+  facebook_username: 管登荣
 
 # Build settings
 destination: _site
