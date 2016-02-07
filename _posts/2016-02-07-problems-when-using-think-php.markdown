@@ -6,7 +6,7 @@ categories: php
 ---
 该篇博客持续记录在使用thinkphp时遇到的迷之问题  
 1. getField()  
-	问题代码(中文不支持,返回值迷之格式):  
+	问题代码(中文不支持,返回值迷之格式,感觉可能是通过url传入参数时参数的类型解析不对,num是url传入的参数):  
 {% highlight ruby %}
 $model->join('student on user.id = student.user_id')
 ->join('department on student.department_id = department.id')
