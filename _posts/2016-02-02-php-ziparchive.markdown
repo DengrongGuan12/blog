@@ -51,3 +51,8 @@ header('Content-Disposition: attachment; filename="' . $homeworkId.'.zip' . '"')
 header("Content-Length: ". filesize($tmpPath));
 readfile($tmpPath);
 {% endhighlight %}  
+
+    * 中文问题  
+    在测试过程中发现文件名中有中文的会自动跳过（通过数据库表中存的path向zip中添加文件，数据库path字段是utf-8编码）,在百度之后发现采用  
+    `iconv("utf-8","gb2312",$path)`  
+    方式可以解决这个问题，但是这种方案只针对不以中文开头的文件，但是如果文件是以中文开头，中文会被省略，有待解决.
