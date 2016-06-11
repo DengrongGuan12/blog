@@ -6,9 +6,12 @@ categories: java recommend-system
 ---
 这篇博客记录的是在米盒项目的推荐需求中使用到的推荐算法  
 
-1. 分析  
-  由于项目时间比较紧迫，目前先考虑使用我比较熟悉的基于用户的协同过滤方法，大致是先计算用户与用户之间的相似度，之后需要获取某个用户的推荐资料时，只要先获取和他相似的用户再获取这些用户喜欢的item，item会多次被不同用户喜欢，这样权重会增加，最后能得出推荐给该用户的item及其可能的感兴趣程度，最终根据感兴趣程度排序即可。  
-  * 相似用户的计算
+1. 基于用户的协同过滤  
+UserBasedCF的核心思想主要是找到和目标用户兴趣相似的用户集合，然后给目标用户推荐这个集合的用户喜欢的物品。关键在于计算用户与用户之间的兴趣相似度。这里主要使用余弦相似度来计算：  
+![用户相似度计算公式](http://mmbiz.qpic.cn/mmbiz/sXiaukvjR0RBpprQopxicAvwhWZNmcr4icpLCX8vXkaiatphvtcicysaDicwb6TtlZk5oLicUYkRzT924VruJDqn7JmWA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)  
+
+wuv 代表用户 u 与 v 之间的兴趣相似度，N(u)表示用户 u 曾经喜欢过的物品集合, N(v) 表示用户 v 曾经喜欢过的物品集合。  
+
 
 2. 逐步实现  
 
