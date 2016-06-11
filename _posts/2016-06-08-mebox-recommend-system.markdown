@@ -14,12 +14,20 @@ categories: java recommend-system
 	wuv 代表用户 u 与 v 之间的兴趣相似度，N(u)表示用户 u 曾经喜欢过的物品集合, N(v) 表示用户 v 曾经喜欢过的物品集合。  
 	根据上述核心思想，可以有如下算法步骤：  
 	1. 建立用户-物品评分表  
-	这里涉及到的物品有四种，包括文章，资料，文集，资料集，目前只实现文章和资料的推荐。由于是分别推荐，即文章和资料分开，用户对文章和资料的兴趣表现不同，因此计算相似度以及给用户推荐的时候都分开计算。因此首先是分别建立用户-文章评分表和用户-资料评分表。用户-文章评分表依据的数据库表有
+	这里涉及到的物品有四种，包括文章，资料，文集，资料集，目前只实现文章和资料的推荐。由于是分别推荐，即文章和资料分开，用户对文章和资料的兴趣表现不同，因此计算相似度以及给用户推荐的时候都分开计算。  首先是分别建立用户-文章评分表和用户-资料评分表。  
+	{% highlight ruby %}
+	// 用户文章评分表 userid-articleid-score
+    Map<Integer,Map<Integer,Integer>> userItems = new HashMap<Integer, Map<Integer, Integer>>();
+    //用户-资料评分表 userid-resourceid-score
+    Map<Integer,Map<Integer,Integer>> userItems = new HashMap<Integer, Map<Integer, Integer>>();
+	{% endhighlight %} 
+	用户-文章评分表依据的数据库表有articleset_user_relation, article_user_relation, 用户-资料评分表依据的数据库表有resourceset_user_relation, user_resource_relation  
 
 	2. 建立物品-用户的倒排表
 	3. 用户与用户之间的共现矩阵 C[u][v]，表示用户u与v喜欢相同物品的个数
 	4. 用户与用户之间的相似度矩阵 W[u][v]，根据上述相似度计算公式计算。
 	5. 用上面的相似度矩阵来给用户推荐和他兴趣相似的用户喜欢的物品。用户 u 对物品 i 的兴趣程度可以估计为  
+
 ![用户对物品的兴趣程度](http://mmbiz.qpic.cn/mmbiz/sXiaukvjR0RBpprQopxicAvwhWZNmcr4icpxVsXkrF2mlRDolFOp060Uduz3nzIvbGtU2YWCOp5myuQnMQnGJzctQ/0?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 
 ### 基于物品的协同过滤
