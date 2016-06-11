@@ -18,7 +18,7 @@ categories: java recommend-system
     这里涉及到的物品有四种，包括文章，资料，文集，资料集，目前只实现文章和资料的推荐。由于是分别推荐，即文章和资料分开，用户对文章和资料的兴趣表现不同，因此计算相似度以及给用户推荐的时候都分开计算。  
     首先是分别建立用户-文章评分表和用户-资料评分表。 
 
-	{% highlight ruby %}
+	{% highlight java %}
     //用户文章评分表 userid-articleid-score
     Map<Integer,Map<Integer,Integer>> userItems = new HashMap<Integer, Map<Integer, Integer>>();
     //用户-资料评分表 userid-resourceid-score
